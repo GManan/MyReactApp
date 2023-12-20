@@ -1,0 +1,7 @@
+export const ADD_ARTICLE = 'ADD_ARTICLE';
+export const LOG_IN = 'LOG_IN';
+
+export default {
+    ADD_ARTICLE,
+    LOG_IN,
+};
