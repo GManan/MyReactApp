@@ -1,12 +1,24 @@
-import React from 'react';
-import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import LoginBtn from './LoginBtn';
+import LoginDialog from './LoginDialog';
+
 
 function TopMenu() {
+    const [isLoginDialogOpen, setLoginDialogOpen] = useState(false);
+    console.log("in top menu")
+    const handleBtnClick = () => {
+        console.log("btn clicked in top menu");
+        setLoginDialogOpen(true);
+    };
+
+    const handleLoginDialogClose = () => {
+        setLoginDialogOpen(false); // Close the login dialog
+    };
+
     return (
         <Navbar bg="light" expand="lg">
             <Container>
-
-                {/* Navbar.Toggle - Button to toggle the collapsed state */}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Brand href="/">
                     <img
@@ -18,22 +30,23 @@ function TopMenu() {
                     />
                 </Navbar.Brand>
 
-                {/* Navbar.Collapse - Container for navigation items */}
                 <Navbar.Collapse id="basic-navbar-nav">
-                    {/* Nav - Container for individual navigation items */}
                     <Nav className="me-auto">
-                        {/* Navigation Links */}
                         <Nav.Link href="#kontakt">Kontakt</Nav.Link>
                         <Nav.Link href="#ueber-uns">Über Uns</Nav.Link>
                         <Nav.Link href="#impressum">Impressum</Nav.Link>
                     </Nav>
 
-                    {/* Nav - Container for additional items (e.g., login button) */}
                     <Nav>
-                        <Button>Login</Button>
+                        <LoginBtn onLoginButtonClick={handleBtnClick} />
                     </Nav>
                 </Navbar.Collapse>
             </Container>
+
+            {/* Render the LoginDialog based on the state */}
+            {isLoginDialogOpen && (
+                <LoginDialog show={isLoginDialogOpen} hide={handleLoginDialogClose} />
+            )}
         </Navbar>
     );
 }

@@ -1,7 +1,7 @@
 // components/PublicPage.js
 
 import React from 'react';
-import { Box, Grid, Card, CardContent, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
 const PublicPage = () => {
     return (

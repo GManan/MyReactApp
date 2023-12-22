@@ -2,20 +2,19 @@ import React from 'react';
 import { configureStore } from '@reduxjs/toolkit';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { thunk } from 'redux-thunk';
+// import { thunk } from 'redux-thunk';
+import authReducer from './redux/Slices/authSlice';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import rootReducer from './react/reducers/index';
-import 'bootstrap/dist/css/bootstrap.min.css';
-const initialState = {};
-const middlewares = [thunk];
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+// import { store } from './app/store';
+// const initialState = {};
+// const middlewares = [thunk];
 const store = configureStore({
-  reducer: rootReducer,
-  preloadedState: initialState,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(middlewares),
+  reducer: {
+    auth: authReducer,
+  },
 });
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(

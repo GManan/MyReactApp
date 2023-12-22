@@ -1,6 +1,6 @@
 import React from 'react';
-import TopMenu from './react/components/TopMenu';
-import PublicPage from './react/components/PublicPage'
+import TopMenu from './components/TopMenu';
+import PublicPage from './components/PublicPage'
 import './App.css';
 
 function App() {
@@ -9,12 +9,7 @@ function App() {
     <div className="App">
       <TopMenu />
       <PublicPage></PublicPage>
-      {/* <header className="App-header">
-        <TopMenu />
-      </header>
-      <body>
-
-      </body> */}
+      <PrivatePage></PrivatePage>
     </div>
   );
 }
