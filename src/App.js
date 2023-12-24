@@ -6,22 +6,13 @@ import './App.css';
 import { useSelector } from "react-redux";
 
 function App() {
-  // const [loggedIn, setLoggedIn] = useState(false);
-  // const [username, setUsername] = useState('');
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
-  // const handleLogin = (user) => {
-  //   setUsername(user.username);
-  //   setLoggedIn(true);
-  // };
-
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   return (
     <div className="App">
       <TopMenu />
-      {/* {isAuthenticated ?  : <LandingPage></LandingPage>} */}
-      {!isAuthenticated && <LandingPage />}
-      {isAuthenticated && <StartPage />}
+      {!isLoggedIn && <LandingPage />}
+      {isLoggedIn && <StartPage />}
     </div>
   );
 }

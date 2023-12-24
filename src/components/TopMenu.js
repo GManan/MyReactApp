@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import LoginBtn from './LoginBtn';
 import LoginDialog from './LoginDialog';
-
+import { useSelector } from 'react-redux'
+import LogoutButton from './LogoutBtn';
 
 function TopMenu() {
     const [isLoginDialogOpen, setLoginDialogOpen] = useState(false);
     console.log("in top menu")
-    const handleBtnClick = () => {
+    const handleLoginBtnClick = () => {
         console.log("btn clicked in top menu");
         setLoginDialogOpen(true);
     };
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
     const handleLoginDialogClose = () => {
         setLoginDialogOpen(false); // Close the login dialog
@@ -37,10 +39,13 @@ function TopMenu() {
                         <Nav.Link href="#impressum">Impressum</Nav.Link>
                     </Nav>
 
-                    <Nav>
-                        <LoginBtn onLoginButtonClick={handleBtnClick} />
-                    </Nav>
                 </Navbar.Collapse>
+                <Nav>
+                    {
+                        isLoggedIn ? <LogoutButton></LogoutButton>
+                            : <LoginBtn onLoginButtonClick={handleLoginBtnClick} />
+                    }
+                </Nav>
             </Container>
 
             {/* Render the LoginDialog based on the state */}

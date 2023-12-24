@@ -1,4 +1,3 @@
-// LoginDialog.js
 import React, { useState } from 'react';
 import { Modal, Form, Row, Col, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,7 +27,7 @@ const LoginDialog = ({ show, hide }) => {
         } catch (error) {
             console.log("user in catch block ", user);
             console.log(" catching from login dialog");
-            console.log("catching from login dialog", error.message); // Log the error message
+            console.log("catching from login dialog", error.message);
             setIsError(true);
             setPending(false);
         }

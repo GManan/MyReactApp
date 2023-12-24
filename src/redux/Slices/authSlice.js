@@ -22,12 +22,15 @@ const authSlice = createSlice({
         loginFailure: (state, action) => {
             state.isLoggedIn = false;
             state.user = null;
+            state.token = null;
             state.isAuthenticated = false;
             state.error = action.payload;
         },
         logout: (state) => {
             state.isLoggedIn = false;
             state.user = null;
+            state.token = null;
+            state.isAuthenticated = false;
             state.error = null;
         },
     },
@@ -39,11 +42,6 @@ export const { loginSuccess, loginFailure, logout } = authSlice.actions;
 export const loginUser = (credentials) => async (dispatch) => {
     try {
         const response = await authService.login(credentials);
-
-        // console.log("respons header", response.headers);
-        // console.log("respons ", response.headers);
-        // console.log("respons.data ", response.data);
-        // response.username = credentials.name;
         dispatch(loginSuccess(response));
     } catch (error) {
         console.log("catching error ", error);
