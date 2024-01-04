@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import TopMenu from './components/TopMenu';
 import LandingPage from './components/LandingPage';
 import StartPage from './components/StartPage';

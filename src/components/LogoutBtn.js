@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { logout } from '../redux/Slices/authSlice';
 const LogoutButton = () => {
     const dispatch = useDispatch();
