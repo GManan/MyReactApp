@@ -17,7 +17,13 @@ const authService = {
                 },
                 withCredentials: true,
             });
-            return { data: response.data, username: username, token: response.headers.getAuthorization().split(" ")[1] };
+            console.log("response from auth service ", response);
+            return {
+                data: response.data,
+                user: username,
+                token: response.headers.get('Authorization').split(" ")[1],
+                isAdmin: response.data.isAdmin,
+            };
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 throw new Error('Invalid credentials. Please try again.');

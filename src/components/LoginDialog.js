@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Form, Row, Col, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/Slices/authSlice';
@@ -8,9 +8,17 @@ const LoginDialog = ({ show, hide }) => {
     const [password, setPassword] = useState('');
     const [isError, setIsError] = useState(false);
     const [pending, setPending] = useState(false);
+
     const dispatch = useDispatch();
     const error = useSelector((state) => state.auth.error);
     const user = useSelector((state) => state.auth.user);
+
+    useEffect(() => {
+        if (user) {
+            // If login was successful, close the modal and navigate
+            setPending(false);
+        }
+    }, [user]);
     const handleLogin = async (e) => {
         e.preventDefault();
         setPending(true);
@@ -20,10 +28,8 @@ const LoginDialog = ({ show, hide }) => {
             console.log("user before login user ", user);
             await dispatch(loginUser({ username: name, password: password }));
             console.log("user after login user ", user);
-            console.log("success");
-            // If login was successful, close the modal and navigate
-            setPending(false);
-            hide(); // Close the modal
+            hide();
+
         } catch (error) {
             console.log("user in catch block ", user);
             console.log(" catching from login dialog");
