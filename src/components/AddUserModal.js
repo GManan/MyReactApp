@@ -6,7 +6,7 @@ const AddUserModal = ({ showProp, handleClose, onSave }) => {
     const [newUser, setNewUser] = useState({});
     useEffect(() => {
 
-    }, []);
+    }, [showProp]);
 
     const handleSave = () => {
         console.log("edited user ", newUser);
@@ -16,12 +16,15 @@ const AddUserModal = ({ showProp, handleClose, onSave }) => {
     };
 
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        if (type === 'checkbox') {
-            setNewUser((prevUser) => ({ ...prevUser, [name]: checked }));
-        } else {
-            setNewUser((prevUser) => ({ ...prevUser, [name]: value }));
-        };
+        if (e) {
+
+            const { name, value, type, checked } = e.target;
+            if (type === 'checkbox') {
+                setNewUser((prevUser) => ({ ...prevUser, [name]: checked }));
+            } else {
+                setNewUser((prevUser) => ({ ...prevUser, [name]: value }));
+            };
+        }
     };
 
     return (
@@ -31,7 +34,7 @@ const AddUserModal = ({ showProp, handleClose, onSave }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form id='UserManagementPageCreateComponent'>
-                    <Form.Group controlId="EditUserForm">
+                    <Form.Group>
                         <Form.Label>User</Form.Label>
                         <Form.Control id='CreateUserComponentEditUserID'
                             type="text"

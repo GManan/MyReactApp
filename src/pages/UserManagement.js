@@ -10,23 +10,42 @@ import AddUserModal from '../components/AddUserModal';
 //this is too suficating, needs editing man, projects your fucking innet mess
 const UserCard = ({ user, onDelete, onEdit }) => {
     return (
-        <div id={`UserItem${user.userID}`} key={user.userID} className="card user-card" style={{
-            // alignContent: 'left',
-            width: '18rem'
-        }}>
-            <p>User ID : {user.userID}</p>
-            <hr />
-            <p>first name : {user.firstName} </p>
-            <hr />
-            <p>last name : {user.lastName}</p>
-            <hr />
-            <div >
-                <button id={`UserItemDeleteButton${user.userID}`} className='btn btn-danger' onClick={() => onDelete(user.useriD)}>Delete</button>
-                <button id={`UserItemEditButton${user.userID}`} className='btn btn-primary' onClick={() => onEdit(user.useriD)}>Edit</button>
+        <div id={`UserItem${user.userID}`} key={user.userID} className="card user-card">
+            <div className="user-content-container">
+                <p className="label">User ID:</p>
+                <p className="value">{user.userID}</p>
+            </div>
+            <hr className="user-content-separator" />
+
+            <div className="user-content-container">
+                <p className='label'>first name: </p>
+                <p className='value'> {user.firstName}</p>
+            </div>
+            <hr className="user-content-separator" />
+            <div className="user-content-container">
+                <p className='label'>lastName: </p>
+                <p className='value'>{user.lastName}</p>
+            </div>
+            <div className='user-card-actions'>
+                <button
+                    id={`UserItemDeleteButton${user.userID}`}
+                    className="btn btn-danger"
+                    onClick={() => onDelete(user.useriD)}
+                >
+                    Delete
+                </button>
+                <button
+                    id={`UserItemEditButton${user.userID}`}
+                    className="btn btn-primary"
+                    onClick={() => onEdit(user.useriD)}
+                >
+                    Edit
+                </button>
             </div>
         </div>
     );
 };
+
 const DeleteUserConfirmationDialog = ({ onDelete, showProp, handleClose, userData }) => {
 
     const dialogId = `DeleteDialogUser${userData.userID}`;
@@ -83,7 +102,7 @@ const UserManagement = () => {
     }, []);
     //ADD USER
     const handleAddUserModalClose = () => {
-        setShowEditModal(false);
+        setShowAddUserModal(false);
     };
     const handleAddUserModalOpen = (user) => {
         console.log("handle edit ", user);
@@ -97,6 +116,7 @@ const UserManagement = () => {
 
     //EDIT USER
     const handleEditModalClose = () => {
+
         setShowEditModal(false);
     };
     const handleOpenEditUser = (user) => {
@@ -128,7 +148,7 @@ const UserManagement = () => {
     return (
         <div id="UserManagementPage" className='user-management' >
             < h1 > User Management Page</h1 >
-            <div>
+            <div className='user-managment-action'>
                 <button id='UserManagementPageCreateUserButton' className='btn btn-primary' onClick={handleAddUserModalOpen}>addUser</button>
             </div>
             <div className="user-cards-container">
@@ -136,6 +156,7 @@ const UserManagement = () => {
                     <UserCard
                         key={user.userID}
                         user={user}
+                        {...console.log("test, ", user)}
                         // pass the function reference ()=> rather than calling it you noob
                         onDelete={() => handleDeleteConfirDialogVisible(user)}
                         onEdit={() => handleOpenEditUser(user)}
