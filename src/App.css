@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -17,7 +17,7 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -39,7 +39,7 @@
 }
 
 /* USER CARD */
-.user-cards-container {
+/* .user-cards-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -72,10 +72,85 @@
 .user-management {
   align-items: center;
   /* margin-left: 10vw; */
-  margin-top: 20px;
-}
+/* margin-top: 20px;
+} */
 
-.main-content {
+/* .main-content {
   flex: 1;
   padding: 20px;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: darkblue;
+} */
+
+/* .container {
+  --topbar-height: 50px;
+  --sidebar-width: 100px;
+  color: white;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: darkgreen;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: var(--topbar-height);
+  margin-left: var(--sidebar-width);
+  background-color: magenta;
+}
+
+.content {
+  margin-top: var(--topbar-height);
+  margin-left: var(--sidebar-width);
+} */
+body,
+html {
+  height: 100vh;
+  /* Ensure the body and html elements take the full height of the viewport */
+  margin: 0;
+  /* Remove default margin */
+}
+
+.App {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  height: 100vh;
+}
+
+.MainContent {
+  display: grid;
+  grid-template-columns: min-content 13fr;
+  background-color: fffd;
+  margin-right: 2px;
+  /* flex-direction: column; */
+}
+
+.sidebar {
+  height: 100%;
+  background-color: #353535;
+}
+
+.sidebar-content {
+  display: grid;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  /* margin-top: 20px; */
+
+}
+
+.sidebar-content a {
+  color: white;
+  margin: 10px;
+  ;
 }

@@ -15,11 +15,15 @@ function App() {
   console.log("state ", state);
   return (
     <Router>
-      <div className="App " >
-        <TopMenu />
-        <div >
-          <Sidebar />
-          <div>
+      <div className="App" >
+        <div>
+          <TopMenu className='topbar' />
+        </div>
+        <div className='MainContent'>
+          <div >
+            <Sidebar />
+          </div>
+          <div className='content'>
             <Routes>
               <Route path="/" element={isLoggedIn ? <StartPage /> : <LandingPage />} />
               <Route path="/user-management" element={isLoggedIn ? <UserManagement /> : <LandingPage />} />

@@ -44,9 +44,9 @@ const LoginDialog = ({ show, hide }) => {
         <Modal id="LoginDialog" show={show} onHide={hide}>
             <Modal.Body>
                 <Form>
-                    <Form.Group as={Row} id="LoginDialogUserIDText" >
+                    <Form.Group as={Row}  >
                         <Col sm={9}>
-                            <Form.Control
+                            <Form.Control id="LoginDialogUserIDText"
                                 type="text"
                                 placeholder="User ID"
                                 name="username"
@@ -55,9 +55,9 @@ const LoginDialog = ({ show, hide }) => {
                             />
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} id="LoginDialogPasswordText">
+                    <Form.Group as={Row} >
                         <Col sm={9}>
-                            <Form.Control
+                            <Form.Control id="LoginDialogPasswordText"
                                 type="password"
                                 placeholder="Password"
                                 name="password"
