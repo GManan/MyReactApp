@@ -23,7 +23,7 @@ export const addUserAsync = (userData) => async (dispatch) => {
     } catch (error) {
         console.log("error is 1111111", error);
 
-        dispatch(setError(error));
+        dispatch(setError(error.data));
     }
 }
 export const deleteUserAsync = (userData) => async (dispatch) => {
@@ -33,7 +33,7 @@ export const deleteUserAsync = (userData) => async (dispatch) => {
         dispatch(deleteUser(userData));
     } catch (error) {
         console.log("error is 1111111", error);
-        dispatch(setError(error));
+        dispatch(setError(error.data));
     }
 }
 export const editUserAsync = (userData) => async (dispatch) => {
@@ -44,6 +44,6 @@ export const editUserAsync = (userData) => async (dispatch) => {
     } catch (error) {
         console.log("error is 1111111", error);
 
-        dispatch(setError(error));
+        dispatch(setError(error.data));
     }
 }

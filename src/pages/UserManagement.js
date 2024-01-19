@@ -16,7 +16,6 @@ const UserCard = ({ user, onDelete, onEdit }) => {
                 <p className="value">{user.userID}</p>
             </div>
             <hr className="user-content-separator" />
-
             <div className="user-content-container">
                 <p className='label'>first name: </p>
                 <p className='value'> {user.firstName}</p>
