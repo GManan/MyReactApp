@@ -10,7 +10,8 @@ export const getUsersAsync = () => async (dispatch) => {
         console.log("2 users ", response.data);
         dispatch(getUsers(response.data));
     } catch (error) {
-        dispatch(setError(error));
+        console.log("error ", error);
+        dispatch(setError(error.data));
     }
 }
 export const addUserAsync = (userData) => async (dispatch) => {
