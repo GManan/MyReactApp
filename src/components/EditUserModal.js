@@ -41,7 +41,7 @@ const EditUserModal = ({ showProp, handleClose, userData, onSave }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form id='UserManagementPageEditComponent'>
-                    <Form.Group controlId="EditUserForm">
+                    <Form.Group >
                         <Form.Label>User ID </Form.Label>
                         <Form.Control id='EditUserComponentEditUserID'
                             type="text"
@@ -79,7 +79,7 @@ const EditUserModal = ({ showProp, handleClose, userData, onSave }) => {
                             type="text"
                             placeholder="Password "
                             name="password"
-                            value={editedUser.password}
+                            // value={ }
                             onChange={handleChange}
 
                         />

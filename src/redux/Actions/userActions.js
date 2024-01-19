@@ -10,8 +10,10 @@ export const getUsersAsync = () => async (dispatch) => {
         console.log("2 users ", response.data);
         dispatch(getUsers(response.data));
     } catch (error) {
+
         console.log("error ", error);
         dispatch(setError(error.data));
+
     }
 }
 export const addUserAsync = (userData) => async (dispatch) => {
@@ -19,6 +21,8 @@ export const addUserAsync = (userData) => async (dispatch) => {
         const response = await userService.addUser(userData);
         dispatch(addUser(response));
     } catch (error) {
+        console.log("error is 1111111", error);
+
         dispatch(setError(error));
     }
 }
@@ -28,6 +32,7 @@ export const deleteUserAsync = (userData) => async (dispatch) => {
         console.log("response ", response)
         dispatch(deleteUser(userData));
     } catch (error) {
+        console.log("error is 1111111", error);
         dispatch(setError(error));
     }
 }
@@ -37,6 +42,8 @@ export const editUserAsync = (userData) => async (dispatch) => {
         console.log("edited user response ", response)
         dispatch(editUser(userData));
     } catch (error) {
+        console.log("error is 1111111", error);
+
         dispatch(setError(error));
     }
 }
