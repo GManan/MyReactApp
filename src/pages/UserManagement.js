@@ -1,104 +1,40 @@
-
 import React, { useEffect, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import '../App';
-import EditUserModal from '../components/EditUserModal';
+import AddUserModal from '../components/User/AddUserModal';
+import DeleteUserConfirmationDialog from '../components/User/DeleteUserConfirmationDialog';
+import EditUserModal from '../components/User/EditUserModal';
+import UserCard from '../components/User/UserCard';
 import { addUserAsync, deleteUserAsync, editUserAsync, getUsersAsync } from '../redux/Actions/userActions';
-import AddUserModal from '../components/AddUserModal';
-//this is too suficating, needs editing man, projects your fucking innet mess
-const UserCard = ({ user, onDelete, onEdit }) => {
-    return (
-        <div id={`UserItem${user.userID}`} key={user.userID} className="card user-card">
-            <div className="user-content-container">
-                <p className="label">User ID:</p>
-                <p className="value">{user.userID}</p>
-            </div>
-            <hr className="user-content-separator" />
-            <div className="user-content-container">
-                <p className='label'>first name: </p>
-                <p className='value'> {user.firstName}</p>
-            </div>
-            <hr className="user-content-separator" />
-            <div className="user-content-container">
-                <p className='label'>lastName: </p>
-                <p className='value'>{user.lastName}</p>
-            </div>
-            <div className='user-card-actions'>
-                <button
-                    id={`UserItemDeleteButton${user.userID}`}
-                    className="btn btn-danger"
-                    onClick={() => onDelete(user.useriD)}
-                >
-                    Delete
-                </button>
-                <button
-                    id={`UserItemEditButton${user.userID}`}
-                    className="btn btn-primary"
-                    onClick={() => onEdit(user.useriD)}
-                >
-                    Edit
-                </button>
-            </div>
-        </div>
-    );
-};
+import { useAuth } from '../App';
 
-const DeleteUserConfirmationDialog = ({ onDelete, showProp, handleClose, userData }) => {
-
-    const dialogId = `DeleteDialogUser${userData.userID}`;
-
-    const handleDelete = () => {
-        console.log("delete ", userData);
-        onDelete()
-    }
-    const handleCancel = () => {
-        handleClose();
-    }
-    return (
-        <div id={`UserItemDeleteButton${userData.userID}`} >
-
-            <Modal show={showProp} >
-                <Modal.Header closeButton>
-                    <Modal.Title>Delete {userData.userID}?</Modal.Title>
-                </Modal.Header>
-
-                <Modal.Footer >
-                    <Button id='DeleteDialogCancelButton' variant="secondary" onClick={handleCancel}>
-                        Cancel
-                    </Button>
-                    <Button id='DeleteDialogConfirmButton' variant="primary" onClick={handleDelete}>
-                        Yes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </div >
-    );
-};
 const UserManagement = () => {
+
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-    const isAdmin = useSelector((state) => state.auth.isAdmin);
-    const users = useSelector((state) => state.users.users);
+    // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    // const isAdmin = useSelector((state) => state.auth.isAdmin);
+    const { isLoggedIn, isAdmin } = useAuth();
 
+    const users = useSelector((state) => state.users.users);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showAddUserModal, setShowAddUserModal] = useState(false);
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
 
     useEffect(() => {
-        console.log(" show Delete dialog ", showDeleteConfirm)
         if (isLoggedIn && isAdmin) {
             // Dispatch the action to fetch users when the component mounts
             dispatch(getUsersAsync());
         } else {
-            // If not logged in or not an admin, navigate to the home page
+            // If not logged-in or not an admin, navigate to the home page
             navigate('/');
         }
     }, []);
+
     //ADD USER
     const handleAddUserModalClose = () => {
         setShowAddUserModal(false);
@@ -146,12 +82,12 @@ const UserManagement = () => {
 
     return (
         <div id="UserManagementPage" className='user-management' >
-            < h1 > User Management Page</h1 >
+            < h1> User Management Page</h1 >
             <div className='user-managment-action'>
                 <button id='UserManagementPageCreateUserButton' className='btn btn-primary' onClick={handleAddUserModalOpen}>addUser</button>
             </div>
             <div className="user-cards-container">
-                {users.map((user) => (
+                {users && users.map((user) => (
                     <UserCard
                         key={user.userID}
                         user={user}

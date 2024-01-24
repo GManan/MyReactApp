@@ -6,9 +6,17 @@ import LandingPage from './pages/LandingPage';
 import StartPage from './pages/StartPage';
 import Sidebar from './components/SideBar';
 import UserManagement from './pages/UserManagement';
+import DegreeCourseManagementPage from './pages/DegreeCourseManagementPage';
 // import Sidebar from './components/SideMenu/SideMenu';
 
-function App() {
+export const useAuth = () => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
+
+  return { isLoggedIn, isAdmin }
+}
+
+const App = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const state = useSelector((state) => state.auth);
   console.log("isLoggedIn ", isLoggedIn);
@@ -27,6 +35,7 @@ function App() {
             <Routes>
               <Route path="/" element={isLoggedIn ? <StartPage /> : <LandingPage />} />
               <Route path="/user-management" element={isLoggedIn ? <UserManagement /> : <LandingPage />} />
+              <Route path="/studiengang" element={isLoggedIn ? <DegreeCourseManagementPage /> : <LandingPage />} />
             </Routes>
           </div>
         </div>

@@ -12,7 +12,7 @@ export const getUsersAsync = () => async (dispatch) => {
     } catch (error) {
 
         console.log("error ", error);
-        dispatch(setError(error));
+        dispatch(setError(error.data));
 
     }
 }
