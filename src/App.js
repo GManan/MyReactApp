@@ -1,19 +1,18 @@
 import { useSelector } from 'react-redux';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import TopMenu from './components/TopMenu';
-import LandingPage from './pages/LandingPage';
-import StartPage from './pages/StartPage';
-import Sidebar from './components/SideBar';
-import UserManagement from './pages/UserManagement';
-import DegreeCourseManagementPage from './pages/DegreeCourseManagementPage';
-// import Sidebar from './components/SideMenu/SideMenu';
+import LandingPage from './react/LandingPage';
+import Sidebar from './react/SideBar';
+import StartPage from './react/StartPage';
+import TopMenu from './react/TopMenu';
+import DegreeCourseManagementPage from './react/degreeCourse/pages/DegreeCourseManagementPage';
+import UserManagement from './react/user/pages/UserManagement';
 
 export const useAuth = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
-
-  return { isLoggedIn, isAdmin }
+  const token = useSelector((state) => state.auth.token);
+  return { isLoggedIn, isAdmin, token }
 }
 
 const App = () => {
