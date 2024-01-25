@@ -15,7 +15,7 @@ const EditUserModal = ({ showProp, handleClose, userData, onSave }) => {
             firstName: userData?.firstName || '',
             lastName: userData?.lastName || '',
             isAdministrator: userData?.isAdministrator,
-            password: userData?.password || '',
+            ...(userData?.password !== '' && { password: userData?.password }),
         }));
     }, [userData]);
 

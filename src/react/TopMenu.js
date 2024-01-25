@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import LoginBtn from './LoginBtn';
-import LoginDialog from './LoginDialog';
-import LogoutButton from './LogoutBtn';
+import LoginBtn from './auth/components/LoginBtn';
+import LoginDialog from './auth/components/LoginDialog';
+import LogoutButton from './auth/components/LogoutBtn';
 
 function TopMenu() {
     const [isLoginDialogOpen, setLoginDialogOpen] = useState(false);

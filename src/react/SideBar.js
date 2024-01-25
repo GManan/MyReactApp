@@ -15,6 +15,7 @@ const SideBar = () => {
             <div className="sidebar-content">
                 <Link to="/" id='OpenStartPageButton'>Home</Link>
                 {isAdmin && <Link id='OpenUserManagementPageButton' to="/user-management">User Management</Link>}
+                {isAdmin && <Link id='OpenDegreeCourseManagementPageButton' to="/studiengang">Studiengang</Link>}
             </div>
             {/* </Navbar> */}
         </div>

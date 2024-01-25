@@ -1,126 +1,10 @@
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* USER CARD */
-/* .user-cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-top: 20px;
-  margin-left: 10vw;
-}
-
-.user-card {
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-
-.app-container {
-  display: flex;
-  height: 100vh;
-}
-
-.content-container {
-  display: flex;
-  flex: 1;
-  margin-top: 56px;
-}
-
-.Sidebar {
-  width: 200px;
-  background-color: #f0f0f0;
-}
-
-
-.user-management {
-  align-items: center;
-  /* margin-left: 10vw; */
-/* margin-top: 20px;
-} */
-
-/* .main-content {
-  flex: 1;
-  padding: 20px;
-}
-
-body {
-  margin: 0;
-  box-sizing: border-box;
-  background-color: darkblue;
-} */
-
-/* .container {
-  --topbar-height: 50px;
-  --sidebar-width: 100px;
-  color: white;
-}
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  width: var(--sidebar-width);
-  height: 100vh;
-  background-color: darkgreen;
-}
-
-.topbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: var(--topbar-height);
-  margin-left: var(--sidebar-width);
-  background-color: magenta;
-}
-
-.content {
-  margin-top: var(--topbar-height);
-  margin-left: var(--sidebar-width);
-} */
 body,
 html {
   height: 100vh;
-  /* Ensure the body and html elements take the full height of the viewport */
   margin: 0;
-  /* Remove default margin */
 }
 
+/* APP */
 .App {
   display: grid;
   grid-template-rows: min-content 1fr;
@@ -132,7 +16,6 @@ html {
   grid-template-columns: min-content 13fr;
   background-color: fffd;
   margin-right: 2px;
-  /* flex-direction: column; */
 }
 
 
@@ -147,7 +30,6 @@ html {
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  /* margin-top: 20px; */
 
 }
 
@@ -166,18 +48,14 @@ html {
 
 .user-managment-action {
   margin: 20px;
-  /* Adjust as needed */
 }
 
 /* USER CARDS */
 .user-cards-container {
   display: flex;
   flex-wrap: wrap;
-  /* Allow cards to wrap to the next line if needed */
   justify-content: center;
-  /* Center cards horizontally */
   gap: 20px;
-  /* Adjust as needed */
 }
 
 .user-card {
@@ -193,14 +71,11 @@ html {
 
 .user-content-container {
   display: flex;
-  /* align-items: center; */
-
 }
 
 .label {
   flex: 1;
   text-align: left;
-  /* Adjust as needed for spacing between label and value */
 }
 
 .value {
@@ -216,4 +91,18 @@ html {
 
 .user-content-separator {
   margin: 1px 0;
+}
+
+/* Studengan */
+
+/* general */
+
+/* FORM */
+.invalid {
+  border: 1px solid red !important;
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

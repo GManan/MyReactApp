@@ -1,0 +1,1 @@
+// const DegreeCourseCard=({degreeCourse,on})

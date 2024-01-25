@@ -2,14 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import authService from '../../services/authService';
 
 const initialState = {
-    isLoggedIn: Boolean(localStorage.getItem('loggedIn')),
+    isLoggedIn: false,
     user: null,
     isAuthenticated: false,
     isAdmin: false,
     token: null,
     error: null,
 }
-
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -23,11 +22,7 @@ const authSlice = createSlice({
             state.error = null;
         },
         loginSuccess: (state, action) => {
-            localStorage.setItem('token', action.payload.token);
-            console.log('actions.payload ', action.payload);
             const { token, user, isAdmin } = action.payload;
-            //Question: should i maybe assign store the token in state from local storage
-
             state.isLoggedIn = true;
             state.user = user;
             state.token = token;
@@ -36,10 +31,6 @@ const authSlice = createSlice({
             state.error = null;
         },
         loginFailure: (state, action) => {
-            // Clear token from localStorage on login failure
-            localStorage.removeItem('token');
-            localStorage.removeItem('loggedIn');
-
             state.isLoggedIn = false;
             state.user = null;
             state.token = null;
@@ -47,10 +38,6 @@ const authSlice = createSlice({
             state.error = action.payload;
         },
         logout: (state) => {
-            // Clear token from localStorage on logout
-            localStorage.removeItem('token');
-            localStorage.removeItem('loggedIn');
-
             state.isLoggedIn = false;
             state.user = null;
             state.token = null;

@@ -1,14 +1,21 @@
 import { useSelector } from 'react-redux';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import TopMenu from './components/TopMenu';
-import LandingPage from './pages/LandingPage';
-import StartPage from './pages/StartPage';
-import Sidebar from './components/SideBar';
-import UserManagement from './pages/UserManagement';
-// import Sidebar from './components/SideMenu/SideMenu';
+import LandingPage from './react/LandingPage';
+import Sidebar from './react/SideBar';
+import StartPage from './react/StartPage';
+import TopMenu from './react/TopMenu';
+import DegreeCourseManagementPage from './react/degreeCourse/pages/DegreeCourseManagementPage';
+import UserManagement from './react/user/pages/UserManagement';
 
-function App() {
+export const useAuth = () => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const token = useSelector((state) => state.auth.token);
+  return { isLoggedIn, isAdmin, token }
+}
+
+const App = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const state = useSelector((state) => state.auth);
   console.log("isLoggedIn ", isLoggedIn);
@@ -27,6 +34,7 @@ function App() {
             <Routes>
               <Route path="/" element={isLoggedIn ? <StartPage /> : <LandingPage />} />
               <Route path="/user-management" element={isLoggedIn ? <UserManagement /> : <LandingPage />} />
+              <Route path="/studiengang" element={isLoggedIn ? <DegreeCourseManagementPage /> : <LandingPage />} />
             </Routes>
           </div>
         </div>

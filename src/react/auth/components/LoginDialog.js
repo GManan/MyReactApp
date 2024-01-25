@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Form, Row, Col, Spinner } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Col, Form, Modal, Row, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../redux/Slices/authSlice';
+import { loginUser } from '../../auth/redux/slices/authSlice';
 
 const LoginDialog = ({ show, hide }) => {
     const [name, setName] = useState('');
@@ -29,11 +29,7 @@ const LoginDialog = ({ show, hide }) => {
             await dispatch(loginUser({ username: name, password: password }));
             console.log("user after login user ", user);
             hide();
-
         } catch (error) {
-            console.log("user in catch block ", user);
-            console.log(" catching from login dialog");
-            console.log("catching from login dialog", error.message);
             setIsError(true);
             setPending(false);
         }
