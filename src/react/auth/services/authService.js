@@ -25,8 +25,8 @@ const authService = {
             });
             const token = response.headers.get('Authorization').split(" ")[1]
             const decodedToken = decodeJWT(token);
-            console.log("response:token ", token);
-            console.log("response :decodedToken ", decodedToken);
+
+
             return {
                 data: response.data,
                 user: decodedToken.userID,

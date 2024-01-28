@@ -1,24 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authSlice, { initializeAuthState } from './auth/redux/slices/authSlice';
+import authSlice from './auth/redux/slices/authSlice';
 import degreeCoursesSlice from './degreeCourse/redux/slices/degreeCoursesSlice';
+import degreeCourseApplicationSlice from './degreeCourseApplication/redux/slices/degreeCourseApplicationSlice';
 import userSlice from './user/redux/slices/userSlice';
 
-// Read values from localStorage
-const loggedIn = Boolean(localStorage.getItem('loggedIn'));
-const token = localStorage.getItem('token');
-
-// Create the initial state
 const initialState = {
     auth: {
-        isLoggedIn: loggedIn,
+        isLoggedIn: false,
         user: null,
         token: null,
         isAdmin: false,
-        isAuthenticated: loggedIn,
+        isAuthenticated: false,
         error: null,
     },
     users: {
         users: [],
+        error: null
+    },
+    degreeCourses: {
+        degreeCourses: [],
         error: null
     }
 };
@@ -27,8 +27,9 @@ export const store = configureStore({
         auth: authSlice,
         users: userSlice,
         degreeCourses: degreeCoursesSlice,
+        degreeCourseApplication: degreeCourseApplicationSlice,
     },
     preloadedState: initialState,
 
 })
-store.dispatch(initializeAuthState({ isLoggedIn: loggedIn, token }));
+

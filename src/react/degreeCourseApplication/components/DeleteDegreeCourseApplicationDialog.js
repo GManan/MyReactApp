@@ -1,7 +1,7 @@
 
 import { Button, Modal } from 'react-bootstrap';
 
-const DeleteUserConfirmationDialog = ({ onDelete, showProp, handleClose, userData }) => {
+const DeleteDegreeCourseApplicationDialog = ({ showProp, handleClose, onDelete, dcAppData }) => {
 
     const handleDelete = () => {
 
@@ -11,18 +11,17 @@ const DeleteUserConfirmationDialog = ({ onDelete, showProp, handleClose, userDat
         handleClose();
     }
     return (
-        <div id={`DeleteDialogUser${userData.userID}`} >
-
+        <div id={`DeleteDialogDegreeCourse${dcAppData.id}`} >
             <Modal show={showProp} >
-                <Modal.Header closeButton>
-                    <Modal.Title>Delete {userData.userID}?</Modal.Title>
+                <Modal.Header>
+                    <Modal.Title>Delete Course {dcAppData.id}?</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Footer >
                     <Button id='DeleteDialogCancelButton' variant="secondary" onClick={handleCancel}>
                         Cancel
                     </Button>
-                    <Button id='DeleteDialogConfirmButton' className="btn btn-success" onClick={handleDelete}>
+                    <Button id='DeleteDialogConfirmButton' variant="primary" onClick={handleDelete}>
                         Yes
                     </Button>
                 </Modal.Footer>
@@ -30,4 +29,4 @@ const DeleteUserConfirmationDialog = ({ onDelete, showProp, handleClose, userDat
         </div >
     );
 };
-export default DeleteUserConfirmationDialog;
+export default DeleteDegreeCourseApplicationDialog;

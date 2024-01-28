@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Form, Modal } from 'react-bootstrap';
 
 const EditUserModal = ({ showProp, handleClose, userData, onSave }) => {
 
-    // const [currentUser] = useState(userData);
     const [editedUser, setEditedUser] = useState(userData || {});
     useEffect(() => {
-        // Update the editedUser state when userData changes
-        console.log("user data ", userData);
         setEditedUser(userData || {});
-        console.log("user data after ", userData);
         setEditedUser((prevUser) => ({
             userID: userData?.userID || '',
             firstName: userData?.firstName || '',
@@ -20,7 +16,7 @@ const EditUserModal = ({ showProp, handleClose, userData, onSave }) => {
     }, [userData]);
 
     const handleSave = () => {
-        console.log("edited user ", editedUser);
+
         onSave(editedUser);
         handleClose();
         return editedUser;

@@ -9,7 +9,7 @@ const LoginButton = ({ onLoginButtonClick }) => {
 
     return (
         <div id='OpenLoginDialogButton'>
-            <Button variant="light" onClick={handleLoginBtnClick}>Login</Button>
+            <Button className='btn btn-primary' onClick={handleLoginBtnClick}>Login</Button>
         </div>
     );
 };

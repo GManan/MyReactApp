@@ -1,25 +1,28 @@
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faAddressCard, faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import LandingPage from './react/LandingPage';
-import Sidebar from './react/SideBar';
-import StartPage from './react/StartPage';
-import TopMenu from './react/TopMenu';
+import LandingPage from './react/AppSceleton/LandingPage';
+import Sidebar from './react/AppSceleton/SideBar';
+import StartPage from './react/AppSceleton/StartPage';
+import TopMenu from './react/AppSceleton/TopMenu';
 import DegreeCourseManagementPage from './react/degreeCourse/pages/DegreeCourseManagementPage';
+import DegreeCourseApplicationManagmentPage from './react/degreeCourseApplication/pages/DegreeCourseApplicationManagmentPage';
 import UserManagement from './react/user/pages/UserManagement';
+
+library.add(faCoffee, faAddressCard);
 
 export const useAuth = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const token = useSelector((state) => state.auth.token);
+
   return { isLoggedIn, isAdmin, token }
 }
 
 const App = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const state = useSelector((state) => state.auth);
-  console.log("isLoggedIn ", isLoggedIn);
-  console.log("state ", state);
   return (
     <Router>
       <div className="App" >
@@ -35,6 +38,7 @@ const App = () => {
               <Route path="/" element={isLoggedIn ? <StartPage /> : <LandingPage />} />
               <Route path="/user-management" element={isLoggedIn ? <UserManagement /> : <LandingPage />} />
               <Route path="/studiengang" element={isLoggedIn ? <DegreeCourseManagementPage /> : <LandingPage />} />
+              <Route path="/application" element={isLoggedIn ? <DegreeCourseApplicationManagmentPage /> : <LandingPage />} />
             </Routes>
           </div>
         </div>

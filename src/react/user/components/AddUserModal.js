@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Form, Modal } from 'react-bootstrap';
 
 const AddUserModal = ({ showProp, handleClose, onSave }) => {
 
@@ -16,7 +16,7 @@ const AddUserModal = ({ showProp, handleClose, onSave }) => {
     }, [showProp]);
 
     const handleSave = () => {
-        console.log("edited user ", newUser);
+
         if (isFormValid()) {
             onSave(newUser);
             handleClose();
@@ -89,7 +89,6 @@ const AddUserModal = ({ showProp, handleClose, onSave }) => {
                             onChange={handleChange}
                             required
                             className={fieldValidity.password ? '' : 'invalid'}
-
                         />
                     </Form.Group>
                 </Form>
