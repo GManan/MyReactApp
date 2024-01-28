@@ -12,6 +12,7 @@ export const useAuth = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const token = useSelector((state) => state.auth.token);
+
   return { isLoggedIn, isAdmin, token }
 }
 

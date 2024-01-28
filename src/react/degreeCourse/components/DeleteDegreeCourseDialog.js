@@ -1,21 +1,20 @@
 
 import { Button, Modal } from 'react-bootstrap';
 
-const DeleteUserConfirmationDialog = ({ onDelete, showProp, handleClose, userData }) => {
+const DeleteDCConfirmationDialog = ({ showProp, handleClose, onDelete, dcData }) => {
 
     const handleDelete = () => {
-        console.log("delete ", userData);
+        console.log("delete ", dcData);
         onDelete()
     }
     const handleCancel = () => {
         handleClose();
     }
     return (
-        <div id={`DeleteDialogUser${userData.userID}`} >
-
+        <div id={`DeleteDialogDegreeCourse${dcData.id}`} >
             <Modal show={showProp} >
-                <Modal.Header closeButton>
-                    <Modal.Title>Delete {userData.userID}?</Modal.Title>
+                <Modal.Header>
+                    <Modal.Title>Delete Course {dcData.id}?</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Footer >
@@ -30,4 +29,4 @@ const DeleteUserConfirmationDialog = ({ onDelete, showProp, handleClose, userDat
         </div >
     );
 };
-export default DeleteUserConfirmationDialog;
+export default DeleteDCConfirmationDialog;

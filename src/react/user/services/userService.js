@@ -4,8 +4,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export const userService = {
     getUsers: async (token) => {
-        // const { isAdmin, isLoggedIn, token } = useAuth();
-
         try {
             const userArr = await
                 axios.get(`${API_URL}/users`, {

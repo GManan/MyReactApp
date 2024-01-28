@@ -26,22 +26,21 @@ const UserManagement = () => {
     const [selectedUser, setSelectedUser] = useState(null);
 
     useEffect(() => {
-        if (isLoggedIn && isAdmin) {
+        if (isLoggedIn) {
             // Dispatch the action to fetch users when the component mounts
             dispatch(getUsersAsync(token));
         } else {
             // If not logged-in or not an admin, navigate to the home page
             navigate('/');
         }
-    }, []);
+    }, [dispatch, isAdmin, isLoggedIn, navigate, token]);
 
     //ADD USER
     const handleAddUserModalClose = () => {
         setShowAddUserModal(false);
     };
-    const handleAddUserModalOpen = (user) => {
-        console.log("handle edit ", user);
-        setShowAddUserModal(true);        // setSelectedUser(user);
+    const handleAddUserModalOpen = () => {
+        setShowAddUserModal(true);
     };
     const handleAddUserSave = (newUser) => {
         console.log("hanle save edit user ", newUser);
@@ -78,8 +77,6 @@ const UserManagement = () => {
     const onDeleteCancel = () => {
         setShowDeleteConfirm(false);
     }
-
-
     return (
         <div id="UserManagementPage" className='user-management' >
             < h1> User Management Page</h1 >

@@ -11,7 +11,7 @@ const initialState = {
 }
 const authSlice = createSlice({
     name: 'auth',
-    initialState,
+    initialState: initialState,
     reducers: {
         setInitialState: (state) => {
             state.isLoggedIn = false;
@@ -48,16 +48,16 @@ const authSlice = createSlice({
     },
 });
 
-export const initializeAuthState = (payload) => (dispatch) => {
-    if (payload.isLoggedIn === true) {
+// export const initializeAuthState = (payload) => (dispatch) => {
+//     if (payload?.isLoggedIn === true) {
 
-        return dispatch(loginSuccess(payload));
-    } else {
-        return dispatch(setInitialState(payload))
-    }
-};
+//         return dispatch(loginSuccess(payload));
+//     } else {
+//         return dispatch(setInitialState(payload))
+//     }
+// };
 // Exporting actions
-export const { loginSuccess, loginFailure, logout, setInitialState } = authSlice.actions;
+export const { loginSuccess, loginFailure, logout } = authSlice.actions;
 
 // Async action creator using Redux Thunk
 // createing this here cz it is just 1 action, later should maybe bring it to its own autActions.js file

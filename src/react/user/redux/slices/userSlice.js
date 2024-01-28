@@ -18,10 +18,8 @@ const userSlice = createSlice({
         setError: (state, action) => {
             state.error = action.payload;
         }
-
     }
 })
 
 export const { getUsers, setError } = userSlice.actions;
 export default userSlice.reducer;
-// export const { actions, reducer } = userSlice;
