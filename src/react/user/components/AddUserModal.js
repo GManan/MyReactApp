@@ -16,7 +16,7 @@ const AddUserModal = ({ showProp, handleClose, onSave }) => {
     }, [showProp]);
 
     const handleSave = () => {
-        console.log("edited user ", newUser);
+
         if (isFormValid()) {
             onSave(newUser);
             handleClose();

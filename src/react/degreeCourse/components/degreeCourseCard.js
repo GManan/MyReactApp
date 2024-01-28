@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
+
 const DegreeCourseCard = ({ degreeCourse, onCreateApplication, onDelete, onEdit }) => {
+    const isAdmin = useSelector((state) => state.auth.isAdmin)
     return (degreeCourse &&
         <div id={`DegreeCourseItem${degreeCourse.id}`} key={degreeCourse.id} className="card degree-course-card">
             <div className="dc-container">
@@ -8,7 +11,7 @@ const DegreeCourseCard = ({ degreeCourse, onCreateApplication, onDelete, onEdit 
             </div>
             <hr className="degreeCourse-row-separator" />
             <div className="degree-course-row">
-                <p className="label">Universität:</p>
+                <p className="label">Univercity:</p>
                 <p className="value" id="UniversityName">{degreeCourse.universityName}</p>
             </div>
             <hr className="degreeCourse-row-separator" />
@@ -22,21 +25,27 @@ const DegreeCourseCard = ({ degreeCourse, onCreateApplication, onDelete, onEdit 
                 <p className='value' id="Name">{degreeCourse.name}</p>
             </div>
             <hr className="degreeCourse-row-separator" />
-            <div className='degreeCourse-card-actions'>
-                <button
-                    id={`DegreeCourseItemEditButton${degreeCourse.id}`}
-                    className="btn btn-primary"
-                    onClick={() => onEdit(degreeCourse.id)}
-                >
-                    Edit
-                </button>
-                <button
-                    id={`DegreeCourseItemDeleteButton${degreeCourse.id}`}
-                    className="btn btn-danger"
-                    onClick={() => onDelete(degreeCourse.id)}
-                >
-                    Delete
-                </button>
+            <div style={{ display: 'flex', gap: '20px' }}>
+
+                {isAdmin &&
+                    <button
+                        id={`DegreeCourseItemEditButton${degreeCourse.id}`}
+                        className="btn btn-primary"
+                        onClick={() => onEdit(degreeCourse.id)}
+                    >
+
+                        Edit
+                    </button>
+                }
+                {isAdmin &&
+                    <button
+                        id={`DegreeCourseItemDeleteButton${degreeCourse.id}`}
+                        className="btn btn-danger"
+                        onClick={() => onDelete(degreeCourse.id)}
+                    >
+                        Delete
+                    </button>
+                }
                 <button
                     id={`CreateDegreeCourseApplicationForDegreeCourse${degreeCourse.id}`}
                     className="btn btn-success"

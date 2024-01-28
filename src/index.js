@@ -1,5 +1,4 @@
 import React from 'react';
-// import { configureStore } from '@reduxjs/toolkit';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';

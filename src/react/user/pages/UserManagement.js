@@ -13,12 +13,7 @@ const UserManagement = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-    // const isAdmin = useSelector((state) => state.auth.isAdmin);
     const { isLoggedIn, isAdmin, token } = useAuth();
-    console.log("is logged in ", isLoggedIn);
-    console.log("is admin ", isAdmin);
-    console.log("token ", token);
     const users = useSelector((state) => state.users.users);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showAddUserModal, setShowAddUserModal] = useState(false);
@@ -27,10 +22,8 @@ const UserManagement = () => {
 
     useEffect(() => {
         if (isLoggedIn) {
-            // Dispatch the action to fetch users when the component mounts
             dispatch(getUsersAsync(token));
         } else {
-            // If not logged-in or not an admin, navigate to the home page
             navigate('/');
         }
     }, [dispatch, isAdmin, isLoggedIn, navigate, token]);
@@ -43,7 +36,7 @@ const UserManagement = () => {
         setShowAddUserModal(true);
     };
     const handleAddUserSave = (newUser) => {
-        console.log("hanle save edit user ", newUser);
+
         dispatch(addUserAsync(newUser, token))
         setShowAddUserModal(false);
     };
@@ -54,12 +47,12 @@ const UserManagement = () => {
         setShowEditModal(false);
     };
     const handleOpenEditUser = (user) => {
-        console.log("handle edit ", user);
+
         setShowEditModal(true);
         setSelectedUser(user);
     };
     const handleSaveEditedUser = (editedUser) => {
-        console.log("hanle save edit user ", editedUser);
+
         dispatch(editUserAsync(editedUser, token))
     };
 
@@ -67,10 +60,10 @@ const UserManagement = () => {
     const handleDeleteConfirDialogVisible = (user) => {
         setShowDeleteConfirm(true);
         setSelectedUser(user);
-        console.log("selected user ", selectedUser);
+
     }
     const handleDelete = () => {
-        console.log(" handle delete , confirmed ", selectedUser);
+
         dispatch(deleteUserAsync(selectedUser.userID, token));
         setShowDeleteConfirm(false);
     }
@@ -79,9 +72,10 @@ const UserManagement = () => {
     }
     return (
         <div id="UserManagementPage" className='user-management' >
-            < h1> User Management Page</h1 >
+            < h2> USER MANAGMENT PAGE</h2 >
+            <hr />
             <div className='user-managment-action'>
-                <button id='UserManagementPageCreateUserButton' className='btn btn-primary' onClick={handleAddUserModalOpen}>addUser</button>
+                <button id='UserManagementPageCreateUserButton' className='btn btn-warning' onClick={handleAddUserModalOpen}>addUser</button>
             </div>
             <div className="user-cards-container">
                 {users && users.map((user) => (

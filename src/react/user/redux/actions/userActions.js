@@ -7,7 +7,7 @@ export const getUsersAsync = (token) => async (dispatch) => {
         const response = await userService.getUsers(authToken);
         dispatch(getUsers(response.data));
     } catch (error) {
-        console.log("error ", error);
+
         dispatch(setError(error.data));
     }
 }
@@ -17,7 +17,7 @@ export const addUserAsync = (userData, token) => async (dispatch) => {
         await userService.addUser(userData, authToken);
         dispatch(getUsersAsync(token));
     } catch (error) {
-        console.log("error is 1111111", error);
+
         dispatch(setError(error.data));
     }
 }

@@ -7,14 +7,14 @@ const EditDegreeCourseModal = ({ showProp, handleClose, degreeCourseData, onSave
     const [editedDegreeCOurse, setEditedDegreeCOurse] = useState(degreeCourseData);
     useEffect(() => {
         // Update the editedDegreeCOurse state when degreeCourseData changes
-        console.log("user data ", degreeCourseData);
+
         setEditedDegreeCOurse(degreeCourseData || {});
-        console.log("user data after ", degreeCourseData);
+
 
     }, [degreeCourseData]);
 
     const handleSave = () => {
-        console.log("edited user ", editedDegreeCOurse);
+
         onSave(editedDegreeCOurse);
         handleClose();
         return editedDegreeCOurse;
@@ -22,9 +22,9 @@ const EditDegreeCourseModal = ({ showProp, handleClose, degreeCourseData, onSave
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log("prev degree course", editedDegreeCOurse);
+
         setEditedDegreeCOurse((prevDegCourse) => ({ ...prevDegCourse, [name]: value }));
-        console.log("prev degree course", editedDegreeCOurse);
+
     }
     return (
         <Modal show={showProp} onHide={handleClose}>
@@ -48,14 +48,14 @@ const EditDegreeCourseModal = ({ showProp, handleClose, degreeCourseData, onSave
                             name="shortName"
                             onChange={handleChange}
                         />
-                        <Form.Label>Universität-Name</Form.Label>
+                        <Form.Label>Univercity-Name</Form.Label>
                         <Form.Control id='EditDegreeCourseComponentEditUniversityName'
                             type="text"
                             placeholder={degreeCourseData.universityName}
                             name="universityName"
                             onChange={handleChange}
                         />
-                        <Form.Label>Universität-Kurzbezeichnung</Form.Label>
+                        <Form.Label>Univercity-Kurzbezeichnung</Form.Label>
                         <Form.Control id='EditDegreeCourseComponentEditUniversityShortName'
                             type="text"
                             placeholder={editedDegreeCOurse.universityShortName}
@@ -83,7 +83,7 @@ const EditDegreeCourseModal = ({ showProp, handleClose, degreeCourseData, onSave
                 <Button id='OpenDegreeCourseManagementPageListComponentButton' variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button id='EditDegreeCourseComponentSaveDegreeCourseButton' variant="primary" onClick={handleSave}>
+                <Button id='EditDegreeCourseComponentSaveDegreeCourseButton' variant="success" onClick={handleSave}>
                     Save Changes
                 </Button>
             </Modal.Footer>

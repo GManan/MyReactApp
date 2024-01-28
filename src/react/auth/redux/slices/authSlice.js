@@ -48,19 +48,8 @@ const authSlice = createSlice({
     },
 });
 
-// export const initializeAuthState = (payload) => (dispatch) => {
-//     if (payload?.isLoggedIn === true) {
-
-//         return dispatch(loginSuccess(payload));
-//     } else {
-//         return dispatch(setInitialState(payload))
-//     }
-// };
-// Exporting actions
 export const { loginSuccess, loginFailure, logout } = authSlice.actions;
 
-// Async action creator using Redux Thunk
-// createing this here cz it is just 1 action, later should maybe bring it to its own autActions.js file
 export const loginUser = (credentials) => async (dispatch) => {
     try {
         const response = await authService.login(credentials);

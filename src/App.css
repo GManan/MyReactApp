@@ -11,6 +11,11 @@ html {
   height: 100vh;
 }
 
+.icon-link {
+  margin: 10px;
+
+}
+
 .MainContent {
   display: grid;
   grid-template-columns: min-content 13fr;
@@ -30,7 +35,13 @@ html {
   flex-direction: column;
   align-content: center;
   justify-content: center;
+  margin: 7px;
+  gap: 21px;
 
+}
+
+.Topmenu {
+  background-color: #353535;
 }
 
 .sidebar-content a {
@@ -43,11 +54,23 @@ html {
   margin: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
 }
 
 .user-managment-action {
-  margin: 20px;
+  /* margin: 40px; */
+  margin-top: 10px;
+  margin-bottom: 18px;
+}
+
+.degreeCourse-row-separator {
+  margin: 10px;
+}
+
+.dca-cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 /* USER CARDS */
@@ -95,8 +118,10 @@ html {
 
 /* Studengan */
 .dc-container {
-  background-color: #c3c3c3;
-  padding: none;
+  /* background-color: #c3c3c3; */
+  /* padding: none; */
+  display: flex;
+  align-items: center;
 
 }
 

@@ -11,18 +11,14 @@ const CreateDegreeCourseApplication = ({ showProp, handleClose, degreeCourseData
     const [years, setYears] = useState([]);
     const [month, setMonth] = useState(0);
     useEffect(() => {
-        // Update the editedDegreeCOurse state when degreeCourseData changes
         setEditedDegreeCOurse(degreeCourseData || {});
-        console.log("degreeCourseData  ", degreeCourseData);
-        console.log("isAdmin", isAdmin);
-        console.log("user ", user);
         const currYear = new Date().getFullYear();
         const currMonth = new Date().getMonth() + 1;
         const futureYears = Array.from({ length: 3 }, (_, index) => currYear + index);
         setYears(futureYears);
         setMonth(currMonth);
-        console.log(years);
-        console.log("currMonth ", currMonth);
+
+
 
     }, [degreeCourseData]);
     const onAddDegreeCourseApplication = (event) => {
@@ -34,12 +30,6 @@ const CreateDegreeCourseApplication = ({ showProp, handleClose, degreeCourseData
 
     const onHandleClose = () => {
         handleClose();
-    }
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        console.log("prev degree course", editedDegreeCOurse);
-        setEditedDegreeCOurse((prevDegCourse) => ({ ...prevDegCourse, [name]: value }));
-        console.log("prev degree course", editedDegreeCOurse);
     }
     return (
         <Modal show={showProp} onHide={handleClose}>
@@ -114,11 +104,11 @@ const CreateDegreeCourseApplication = ({ showProp, handleClose, degreeCourseData
                     </select>
                 </div>
                 <Modal.Footer>
-                    <Button className='btn btn-warning' onClick={onHandleClose} id='OpenDegreeCourseManagementPageListComponentButton'>
-                        Abbrechen
+                    <Button className='btn btn-secondary' onClick={onHandleClose} id='OpenDegreeCourseManagementPageListComponentButton'>
+                        Cancel
                     </Button>
-                    <Button type='submit' className='btn btn-primary' id='CreateDegreeCourseApplicationCreateButton '>
-                        Speichern
+                    <Button type='submit' className='btn btn-success' id='CreateDegreeCourseApplicationCreateButton '>
+                        Save
                     </Button>
                 </Modal.Footer>
             </form>

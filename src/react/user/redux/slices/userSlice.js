@@ -9,10 +9,10 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         getUsers: (state, action) => {
-            console.log("in set user reducer ", action.payload);
+
             state.users = action.payload
                 .map(user => ({ ...user }))
-            console.log("in set user reducer ", state.users);
+
             state.error = null;
         },
         setError: (state, action) => {

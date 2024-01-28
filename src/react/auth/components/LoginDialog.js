@@ -25,16 +25,16 @@ const LoginDialog = ({ show, hide }) => {
 
         try {
 
-            console.log("user before login user ", user);
+
             await dispatch(loginUser({ username: name, password: password }));
-            console.log("user after login user ", user);
+
             hide();
         } catch (error) {
             setIsError(true);
             setPending(false);
         }
     };
-    const loginButton = <button id="PerformLoginButton" onClick={handleLogin}>Login</button>;
+    const loginButton = <button className='btn btn-primary' style={{ margin: '10px' }} id="PerformLoginButton" onClick={handleLogin}>Login</button>;
 
     return (
         <Modal id="LoginDialog" show={show} onHide={hide}>
@@ -42,7 +42,7 @@ const LoginDialog = ({ show, hide }) => {
                 <Form>
                     <Form.Group as={Row}  >
                         <Col sm={9}>
-                            <Form.Control id="LoginDialogUserIDText"
+                            <Form.Control style={{ margin: '10px' }} id="LoginDialogUserIDText"
                                 type="text"
                                 placeholder="User ID"
                                 name="username"
@@ -53,7 +53,7 @@ const LoginDialog = ({ show, hide }) => {
                     </Form.Group>
                     <Form.Group as={Row} >
                         <Col sm={9}>
-                            <Form.Control id="LoginDialogPasswordText"
+                            <Form.Control style={{ margin: '10px' }} id="LoginDialogPasswordText"
                                 type="password"
                                 placeholder="Password"
                                 name="password"

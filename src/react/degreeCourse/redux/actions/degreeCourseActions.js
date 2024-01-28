@@ -6,12 +6,12 @@ export const getDegreeCoursesAsync = (token) => async (dispatch) => {
     try {
         const authToken = 'Bearer ' + token;
         const response = await degreeCoursesService.getDegreeCourses(authToken);
-        console.log("degree courses", response);
-        console.log("degree courses .data ", response.data);
+
+
         dispatch(getDegreeCourses(response.data));
         return " Studiengang erfolgreich editiert";
     } catch (error) {
-        console.log("error ", error);
+
         dispatch(setError(error.data));
     }
 }
@@ -20,8 +20,10 @@ export const addDegreeCourseAsync = (payload, token) => async (dispatch) => {
         const authToken = 'Bearer ' + token;
         console.log("passing token ", authToken)
         await degreeCoursesService.addDegreeCourse(payload, authToken);
+        toast.success('Studiengang erfolgreich erstellt');
         dispatch(getDegreeCoursesAsync(token));
     } catch (error) {
+        toast.error("Studiengang könte nicht erstellt werden");
         dispatch(setError(error.data));
     }
 }
@@ -53,4 +55,17 @@ export const deleteDegreeCourseAsync = (payload, token) => async (dispatch) => {
 
         });
 
+}
+export const addDegreeCourseApplicationAsync = (payload, token) => async (dispatch) => {
+
+    try {
+        const authToken = 'Bearer ' + token;
+        console.log("passing token ", authToken)
+        await degreeCoursesService.addDegreeCourseApplication(payload, authToken);
+        toast.success('Bewerbung erfolgreich erstellt');
+
+    } catch (error) {
+        toast.error("Studiergang könnte nicht erstellt werden");
+        dispatch(setError(error.data));
+    }
 }

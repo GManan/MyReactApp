@@ -4,7 +4,7 @@ import { Button, Modal } from 'react-bootstrap';
 const DeleteDCConfirmationDialog = ({ showProp, handleClose, onDelete, dcData }) => {
 
     const handleDelete = () => {
-        console.log("delete ", dcData);
+
         onDelete()
     }
     const handleCancel = () => {
@@ -21,7 +21,7 @@ const DeleteDCConfirmationDialog = ({ showProp, handleClose, onDelete, dcData })
                     <Button id='DeleteDialogCancelButton' variant="secondary" onClick={handleCancel}>
                         Cancel
                     </Button>
-                    <Button id='DeleteDialogConfirmButton' variant="primary" onClick={handleDelete}>
+                    <Button id='DeleteDialogConfirmButton' className="btn btn-success" onClick={handleDelete}>
                         Yes
                     </Button>
                 </Modal.Footer>

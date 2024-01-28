@@ -7,7 +7,7 @@ import AddDegreeCourseModal from '../components/AddDegreeCourseModal';
 import DeleteDCConfirmationDialog from '../components/DeleteDegreeCourseDialog';
 import EditDegreeCourseModal from '../components/EdirDegreeCourseModal';
 import DegreeCourseCard from '../components/degreeCourseCard';
-import { addDegreeCourseAsync, deleteDegreeCourseAsync, editDegreeCoursesAsync, getDegreeCoursesAsync } from '../redux/actions/degreeCourseActions';
+import { addDegreeCourseApplicationAsync, addDegreeCourseAsync, deleteDegreeCourseAsync, editDegreeCoursesAsync, getDegreeCoursesAsync } from '../redux/actions/degreeCourseActions';
 
 const DegreeCourseManagementPage = () => {
     const { isLoggedIn, isAdmin, token } = useAuth();
@@ -18,15 +18,24 @@ const DegreeCourseManagementPage = () => {
     const [showCreateDCApp, setShowCreateDCApp] = useState(false)
 
 
+    const degreeCourses = useSelector((state) => state.degreeCourses.degreeCourses);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (isLoggedIn) {
-            console.log("showAddModal ", showAddModal)
+            console.log("degreeCourses ", degreeCourses)
             console.log(" show delete modal ", showDeleteConfirm)
             // Dispatch the action to fetch Studiengänge when the component mounts
             dispatch(getDegreeCoursesAsync(token));
+            if (degreeCourses) {
+                degreeCourses.map((app) => (
+
+                    console.log("degreeCorseApplications ", app)
+                ))
+
+            }
         } else {
             navigate('/');
         }
@@ -45,60 +54,80 @@ const DegreeCourseManagementPage = () => {
     };
     // const createDegreeCourse = () => {
     const handleDelete = () => {
-        console.log(" handle delete , confirmed ", selectedDC);
+
         dispatch(deleteDegreeCourseAsync(selectedDC.id, token));
         setShowDeleteConfirm(false);
     }
     // }
     const closeAddDegreeModal = () => {
-        console.log("closing add degree modal");
+
         setShowAddModal(false);
     }
     const closeCreateDegreeCourseApplicationClose = () => {
-        console.log("closing add degree course apllication modal");
+
         setShowCreateDCApp(false);
     }
     const handleAddDegreeCourseSave = (payload) => {
-        console.log("closing addDegree course modal")
+
+
+        if (payload.shortName.length < 2) {
+            payload.shortName = createShortName(payload.name);
+        }
+        if (payload.departmentShortName.length < 2) {
+            payload.departmentShortName = createShortName(payload.departmentName);
+        }
+        if (payload.universityShortName.length < 2) {
+            payload.universityShortName = createShortName(payload.universityName);
+        }
         dispatch(addDegreeCourseAsync(payload, token))
         setShowAddModal(false)
     }
     const handleCreateDegreeCourseApplicationSave = (payload) => {
-        console.log("saving addDegree course application save ", payload)
-        // dispatch(addDegreeCourseAsync(payload, token))
-        setShowAddModal(false)
+
+
+
+        payload.degreeCourseID = selectedDC.id;
+        dispatch(addDegreeCourseApplicationAsync(payload, token));
+        setShowAddModal(false);
     }
     const handleCreateDegreeCourseClick = () => {
-        console.log(" open add dc modal", showAddModal);
+
         setShowAddModal(true);
-        console.log(" open add dc modalssssssss", showAddModal);
+
     }
     const onEditDegreeCourse = (degreeCourse) => {
-        console.log("edit degree course ", degreeCourse);
+
         setSelectedDC(degreeCourse)
-        setShowCreateDCApp(true);
+        setShowEditModal(true);
     };
     const onDeleteDegreeCourse = (degreeCourse) => {
         setSelectedDC(degreeCourse);
-        console.log("edit degree onDeleteDegreeCourse ", selectedDC);
+
         setShowDeleteConfirm(true);
     };
     const handleDeleteDialogCLose = () => {
         setShowDeleteConfirm(false);
     }
     const onCreateApplication = (degreeCourse) => {
-        console.log("edit degree onCreateApplication ", degreeCourse);
+
         setSelectedDC(degreeCourse)
         setShowCreateDCApp(true);
     };
-    const degreeCourses = useSelector((state) => state.degreeCourses.degreeCourses);
 
+    const createShortName = (fullName) => {
+        const words = fullName.split(' ');
+        const shortName = words.map(word => word.charAt(0)).join('');
 
+        return shortName.toUpperCase();
+    };
     return (
         <div id='DegreeCourseManagementPageListComponent' className='user-management'>
-            <h1> Studeingang liste</h1>
-            <div className='degree-Course-action'>
-                <button id='DegreeCourseManagementPageCreateDegreeCourseButton' className='btn btn-primary' onClick={handleCreateDegreeCourseClick}>add degree course</button>
+            <div className='page-header'>
+                <h2 > DEGREE COURSE LIST </h2>
+            </div>
+            <hr />
+            <div className='user-managment-action'>
+                <button id='DegreeCourseManagementPageCreateDegreeCourseButton' className='btn btn-warning' onClick={handleCreateDegreeCourseClick}>add degree course</button>
             </div>
             <div className="degreeCourseCard user-cards-container">
                 {degreeCourses && degreeCourses.map((degreeCourse) => (
