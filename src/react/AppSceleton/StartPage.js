@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { dadJokeFetch } from "../AppSceleton/fetchDadJokes";
 const StartPage = () => {
     const username = useSelector((state) => state.auth.user);
-    // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     const [joke, setJoke] = useState("");
 
     const fetchDadJoke = () => {
@@ -13,7 +12,6 @@ const StartPage = () => {
                 setJoke(jokeResponse.data.joke);
                 console.log("jokeeee", joke)
 
-                // Do something with the joke, e.g., update the UI.
             })
             .catch(error => {
                 console.error("Error fetching dad joke", error);

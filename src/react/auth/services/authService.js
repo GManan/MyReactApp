@@ -1,7 +1,4 @@
 import axios from 'axios';
-// import config from '../config';
-
-// const API_URL = config.API_URL;
 const apiUrl = process.env.REACT_APP_API_URL + '/authenticate';
 
 function decodeJWT(token) {
@@ -14,8 +11,6 @@ const authService = {
     login: async (credentials) => {
         try {
             const { username, password } = credentials;
-            console.log(" url ", apiUrl)
-            // Base64 encode the username and password
             const basicAuthString = btoa(`${username}:${password}`);
 
             const response = await axios.get(apiUrl, {

@@ -17,9 +17,6 @@ const CreateDegreeCourseApplication = ({ showProp, handleClose, degreeCourseData
         const futureYears = Array.from({ length: 3 }, (_, index) => currYear + index);
         setYears(futureYears);
         setMonth(currMonth);
-
-
-
     }, [degreeCourseData]);
     const onAddDegreeCourseApplication = (event) => {
         event.preventDefault();

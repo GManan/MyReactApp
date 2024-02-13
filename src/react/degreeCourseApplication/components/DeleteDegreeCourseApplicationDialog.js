@@ -21,7 +21,7 @@ const DeleteDegreeCourseApplicationDialog = ({ showProp, handleClose, onDelete, 
                     <Button id='DeleteDialogCancelButton' variant="secondary" onClick={handleCancel}>
                         Cancel
                     </Button>
-                    <Button id='DeleteDialogConfirmButton' variant="primary" onClick={handleDelete}>
+                    <Button id='DeleteDialogConfirmButton' variant="primary" onClick={() => onDelete}>
                         Yes
                     </Button>
                 </Modal.Footer>

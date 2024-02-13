@@ -164,7 +164,6 @@ const DegreeCourseManagementPage = () => {
                 onSave={handleCreateDegreeCourseApplicationSave}
                 isAdmin={isAdmin}
             />
-
         </div >
     )
 }
